@@ -38,48 +38,6 @@ namespace TableTendersAPIService.Controllers
             return await db.Tenders.ToListAsync();
         }
 
-        
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Tender>> Get(int id)
-        {
-            Tender tender = await db.Tenders.FirstOrDefaultAsync(x => x.Id == id);
-            if (tender == null)
-                return NotFound();
-            return new ObjectResult(tender);
-        }
-
-        
-        [HttpPut]
-        public async Task<ActionResult<Tender>> Put(Tender tender)
-        {
-            if (tender == null)
-            {
-                return BadRequest();
-            }
-            if (!db.Tenders.Any(x => x.Id == tender.Id))
-            {
-                return NotFound();
-            }
-
-            db.Update(tender);
-            await db.SaveChangesAsync();
-            return Ok(tender);
-        }
-
-        
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Tender>> Delete(int id)
-        {
-            Tender tender = db.Tenders.FirstOrDefault(x => x.Id == id);
-            if (tender == null)
-            {
-                return NotFound();
-            }
-            db.Tenders.Remove(tender);
-            await db.SaveChangesAsync();
-            return Ok(tender);
-        }
-
         public class FileUploadAPI
         {
             public IFormFile files { get; set; }
