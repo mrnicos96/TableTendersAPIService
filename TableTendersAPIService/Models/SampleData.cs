@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.IO;
 
 namespace TableTendersAPIService.Models
 {
@@ -10,6 +11,10 @@ namespace TableTendersAPIService.Models
             {
                 context.RemoveRange(context.Tenders);
                 context.SaveChanges();
+            }
+            if (Directory.Exists(@"wwwroot\Upload\"))
+            {
+                Directory.Delete(@"wwwroot\Upload\", true);
             }
         }
     }
