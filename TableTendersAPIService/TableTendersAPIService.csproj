@@ -10,9 +10,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Data.xlsx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <Folder Include="wwwroot\" />
+    <Folder Include="wwwroot\Upload\" />
   </ItemGroup>
 
 </Project>

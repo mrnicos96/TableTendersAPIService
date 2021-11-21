@@ -13,18 +13,32 @@ namespace TableTendersAPIService
             
             services.AddDbContext<TenderContext>(options => options.UseSqlServer(con));
 
-            services.AddControllers(); 
+            services.AddControllers();
+            
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllOrigin", builder => builder.AllowAnyOrigin());
+            });
         }
 
         public void Configure(IApplicationBuilder app)
         {
+            app.UseCors();
+
             app.UseDeveloperExceptionPage();
 
             app.UseRouting();
 
+            app.UseCors();
+
+            app.UseStaticFiles();
+
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers(); 
+                endpoints.MapControllerRoute(
+                    name: "api",
+                    pattern: "api/{controller=Home}/{action=Index}/{id?}")
+                .RequireCors("AllowAllOrigin");
             });
         }
     }
