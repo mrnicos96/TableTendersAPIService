@@ -25,3 +25,4 @@ POST api/tender
 * Коментарий автора.
 
 Для тестирования отправки файла в сервис использовал Postman.
+Для подключение БД происходит в файле ApplicationContext строка 19 optionsBuilder.UseMySql("server=localhost;user=root;password=12345;database=USERSdb;", new MySqlServerVersion(new Version(8, 0, 25)));
